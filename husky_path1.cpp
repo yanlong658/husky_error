@@ -200,9 +200,8 @@ void process()
       while(ros::ok())
       {
 //&& std::sqrt(std::pow(error(0),2) + std::pow(error(1),2)) < 0.1
-          if(count_ == max)
+          if(count_ >= max - 1 && std::sqrt(error(0) * error(0) + error(1) * error(1)) < 0.1)
           {
-
             vel_cmd.linear.x = 0;
             vel_cmd.angular.z = 0;
 
@@ -232,7 +231,15 @@ void process()
             goal_pose.v << data[count_].pos[0] ,data[count_].pos[1] , data[count_].pos[2];
             vel.x = data[count_].vel[0];
 
-            count_ += 1 ;
+            if(count_ >= max - 1)
+            {
+//              count_ = max - 1;
+            }
+            else
+            {
+              count_ += 1 ;
+            }
+
 
             //</lio_path>
             path_pub.publish(goal_path);
