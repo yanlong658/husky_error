@@ -1,0 +1,22 @@
+<launch>
+    <param name="use_sim_time" value="false"/>
+
+    <param name="X_KP" type="double" value="0.8"/>
+    <param name="Y_KP" type="double" value="0.5"/>
+
+    <param name="X_KI" type="double" value="0.0"/>
+    <param name="Y_KI" type="double" value="0.0"/>
+
+    <param name="X_KD" type="double" value="0.05"/>
+    <param name="Y_KD" type="double" value="0.05"/>
+
+    <param name="FREQ" type="double" value="30"/>
+
+    <param name="max_vel_x" type="double" value="0.6"/>
+	<param name="min_vel_x" type="double" value="0.05"/>
+	<param name="max_vel_w" type="double" value="0.5"/>
+	<param name="min_vel_w" type="double" value="0.05"/>
+	<param name="POS_topic" type="string" value="/estimator/imu_propagate"/>
+    <node pkg="ncrl_ugv_ctrl" type="husky_path" name="husky_path" output="screen"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ncrl_ugv_ctrl)/config/rviz.rviz"/>
+</launch>
